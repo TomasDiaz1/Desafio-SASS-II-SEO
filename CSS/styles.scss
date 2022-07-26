@@ -1,0 +1,264 @@
+/*Maps*/
+/*Colores*/
+$colores: (
+c-black: #0C0B0B,
+c-white: #FCFCFC,
+c-grey: #888888,
+);
+/*Alineación*/
+$alineacion:(
+centro: center,
+espacio-alrededor: space-around,
+espacio-entremedio: space-between,
+);
+/*Font-size*/
+$fontsize:(
+muymuy-grande: xx-large,
+muy-grande: x-large,
+grande: large,
+);
+
+/*Mixins*/
+@mixin sizes($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+
+
+* {
+	padding: 0%;
+	margin: 0%;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.encabezados{
+    justify-self: center;
+    color: map-get($colores, c-black );
+    
+        }
+
+section {
+	display: grid;
+	grid-template-columns: 1fr 7fr;
+	grid-template-rows: 1fr 3fr 3fr 1fr;
+	grid-template-areas: "header header" "Masvendidos productos" "Masvendidos productos" "footer footer";
+	column-gap: 50px;
+    a {
+        text-decoration: none;
+        color: map-get($colores, c-white );
+    }
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        grid-area: header;
+        background-color: map-get($colores,c-black );
+        height: 210px;
+        
+        
+        ul {
+            list-style: none;
+            text-align: map-get($alineacion, centro );
+            margin-left: 30px;
+            width: 200px;
+            background-color: map-get($colores,c-black );
+            border: 3px;
+            border-style: ridge;
+            border-color: map-get($colores, c-white );
+            ul {
+                position: absolute;
+                display: none;
+                li {
+                    display: block;
+                }
+            }
+            &:hover ul {
+                display: block;
+            }
+        }
+        li {
+            display: inline-block;
+            position: relative;
+            font-size: 25px;
+            padding: 10px;
+            &:hover ul {
+                display: block;
+            }
+        }
+
+        
+    }
+    .Masvendidos {
+        display: grid;
+        grid-area: Masvendidos;
+        background-color: map-get($colores, c-grey);
+        display: flex;
+        flex-direction: column;
+        h1 {
+            margin-top: 50px;
+            display: flex;
+            justify-content: map-get($colores, centro);
+            font-size: map-get($fontsize, muymuy-grande );
+            background-color: map-get($colores, c-grey);
+            width: 200px;
+            margin-left: 80px;
+        }
+    
+    .ofertas1 {
+        @include sizes(120px,200px);
+        margin: 70px;
+        background-image: url(../Media/Oferta.jpg);
+        background-position-x: map-get($alineacion, centro );
+        background-position-y: map-get($alineacion, centro );
+        background-repeat: no-repeat;
+        background-size: 100px;
+        background-color: map-get($colores, c-white );
+        border: 3px;
+        border-style: solid;
+        justify-content: map-get($alineacion, centro );
+        color: map-get($colores,c-black );
+        font-size: map-get($fontsize, grande );
+        text-align: map-get($alineacion, centro );
+    }
+    .ofertas2 {
+        @extend .ofertas1;
+        @include sizes(120px,200px);
+        background-image: url(../Media/Oferta2.jpg);
+        
+    }
+    .ofertas3 {
+        @extend .ofertas1;
+        @include sizes(120px,200px);
+        background-image: url(../Media/Oferta3.jpg);
+        
+    }
+    }
+    
+    div {
+        display: flex;
+        grid-area: productos;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: map-get($alineacion, centro );
+        
+        
+        .productosremeras {
+            color: azure;
+            display: flex;
+            background-color: black;
+            justify-content: map-get($alineacion, centro );
+            @include sizes(200px,300px);
+            margin: 30px;
+            margin-top: 100px;
+            background-image: url(../Media/remeraOS.jpg);
+            background-position-x: map-get($alineacion, centro );
+            background-position-y: map-get($alineacion, centro );
+            background-repeat: no-repeat;
+            background-size: 200px;
+            background-color: map-get($colores, c-white );
+            border: 3px;
+            border-style: solid;
+            justify-content: map-get($alineacion, centro );
+            color: black;
+            font-size: map-get($fontsize, grande );
+        }
+        .productosbuzos {
+            
+            @extend .productosremeras;
+            @include sizes(200px,300px);
+            background-image: url(../Media/Hoodies.jpg);
+            background-size: 150px;
+            
+        }
+        .productoscamperas {
+            @extend .productosremeras;
+            @include sizes(200px,300px);
+            background-image: url(../Media/Camperas.jpg);
+            background-size: 200px;
+            
+        }
+        
+    }
+    
+    footer {
+        background-color: map-get($colores,c-black );
+        display: flex;
+        grid-area: footer;
+        color: map-get($colores, c-white );
+        flex-direction: row;
+        justify-content: map-get($alineacion, espacio-alrededor );
+        a {
+            margin-top: 100px;
+            font-size: 20px;
+        }
+    }
+    .productosespecificos {
+        display: grid;
+        grid-template-columns: 1fr 7fr;
+        grid-template-rows: 1fr 3fr 3fr 1fr;
+        grid-template-areas: "header header" "productos productos" "productos productos" "footer footer";
+        column-gap: 50px;
+    }
+    
+    }
+    .sobrenosotros {
+        display: grid;
+        grid-template-columns: 1fr 6fr;
+        grid-template-rows: 1fr 5fr 1fr;
+        grid-template-areas: "aside body" "aside body" "footer footer";
+        .preguntasfrecuentes {
+            grid-area: aside;
+            background-color: map-get($colores, c-grey);
+            height: 2700px;
+            display: flex;
+            flex-direction: column;
+            font-size: map-get($fontsize, grande );
+            align-items: map-get($alineacion, centro );
+            }
+            p {
+                margin-top: 70px;
+            }
+            img {
+                width: 200px;
+                align-self: map-get($alineacion, centro );
+                margin-top: 30px;
+            }
+        
+        
+        #info {
+            margin-top: 200px;
+            font-size: map-get($fontsize, grande );
+            width: 800px;
+            display: flex;
+            align-self: map-get($alineacion, centro );
+            justify-self: map-get($alineacion, centro );
+        }
+        .piedepagina {
+            grid-area: footer;
+            background-color: map-get($colores,c-black );
+            display: flex;
+            width: 1920px;
+            color: map-get($colores, c-white );
+            flex-direction: row;
+            justify-content: map-get($alineacion, espacio-alrededor );
+        }
+        
+        button {
+            width: 100px;
+        }
+    
+    .piedepagina {
+        grid-area: footer;
+        background-color: map-get($colores,c-black );
+        display: flex;
+        width: 1920px;
+        color: map-get($colores, c-white );
+        flex-direction: row;
+        justify-content: map-get($alineacion, espacio-alrededor );
+    }
+    
+    button {
+        width: 100px;
+    }
+}
